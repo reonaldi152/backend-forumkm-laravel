@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
 
 class Seller extends Model
 {
+    use HasFactory, HasApiTokens;
+    
     protected $fillable = [
        
         'name',
@@ -16,7 +20,9 @@ class Seller extends Model
         'birth_date',
         'photo',
         'otp_register',
-        'email_verified_at',
+        'otp_expired',
+        'verified_at',
+        'status',
         'password',
     ];
 }

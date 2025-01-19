@@ -21,6 +21,9 @@ return new class extends Migration
             $table->date('birth_date')->nullable();
             $table->string('photo')->nullable();
             $table->string('otp_register')->nullable();
+            $table->timestamp('otp_expired')->nullable();
+            $table->timestamp('verified_at')->nullable();
+            $table->enum('status', ['pending', 'active', 'inactive'])->default('pending');
             $table->string('password')->nullable();
             $table->timestamps();
         });
