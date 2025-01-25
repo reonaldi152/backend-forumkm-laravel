@@ -1,7 +1,7 @@
 @extends('mails.layout')
 
 @section('content')
-Hi {{ $user->name }},<br>
+Hi {{ $name }},<br>
 
 Anda akan melakukan reset password, masukan OTP berikut pada aplikasi: {{ $otp }}.<br>
 

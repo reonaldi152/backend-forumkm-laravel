@@ -63,4 +63,37 @@ class User extends Authenticatable implements FilamentUser
             'password' => 'hashed',
         ];
     }
+
+    public function getApiResponseAttribute()
+    {
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'photo_url' => $this->photo_url,
+            'username' => $this->username,
+            'phone' => $this->phone,
+            'gender' => $this->gender,
+            'birth_date' => $this->birth_date,
+        ];
+    }
+
+    public function getApiResponseAsBuyerAttribute()
+    {
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'photo_url' => $this->photo_url,
+            'username' => $this->username,
+            'phone' => $this->phone,
+        ];
+    }
+
+    public function getPhotoUrlAttribute()
+    {
+        if (is_null($this->photo)) {
+            return null;
+        }
+
+        return asset('storage/' . $this->photo);
+    }
 }

@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\API\AuthSellerController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\API\AuthSellerController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 // Route::get('/user', function (Request $request) {
@@ -31,6 +33,18 @@ Route::post('/verify-register', [AuthenticationController::class, 'verifyRegiste
 Route::post('/resend-otp', [AuthenticationController::class, 'resendOtp']);
 
 Route::post('/login', [AuthenticationController::class, 'login']);
+
+Route::prefix('forgot-password')->group(function(){
+    Route::post('/request', [ForgotPasswordController::class, 'request']);
+    Route::post('/resend-otp', [ForgotPasswordController::class, 'resendOtp']);
+    Route::post('/check-otp', [ForgotPasswordController::class, 'verifyOtp']);
+    Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword']);
+});
+
+Route::middleware('auth:sanctum')->group(function(){
+    Route::get('profile', [ProfileController::class, 'getProfile']);
+    Route::patch('profile', [ProfileController::class, 'updateProfile']);
+});
 
 // group route for seller
 Route::group(['prefix' => 'seller'], function () {
