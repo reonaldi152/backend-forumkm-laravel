@@ -24,6 +24,7 @@ Route::get('/login', function () {
     ], 401);
 })->name('login');
 
+//USER
 Route::post('/register', [AuthenticationController::class, 'register']);
 Route::post('/check-otp-register', [AuthenticationController::class, 'verifyOtp']);
 Route::post('/verify-register', [AuthenticationController::class, 'verifyRegister']);
