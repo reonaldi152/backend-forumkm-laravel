@@ -44,6 +44,7 @@ Route::prefix('forgot-password')->group(function(){
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('profile', [ProfileController::class, 'getProfile']);
     Route::patch('profile', [ProfileController::class, 'updateProfile']);
+    
 });
 
 // group route for seller

@@ -27,6 +27,8 @@ class ProfileController extends Controller
             // 'store_name' => 'nullable|min:2|max:100',
             'gender' => 'required|in:Laki-Laki,Perempuan,Lainnya',
             'birth_date' => 'nullable|date_format:Y-m-d',
+            'address' => 'nullable',
+            'link_gmaps' => 'nullable'
         ]);
 
         if ($validator->fails()) {

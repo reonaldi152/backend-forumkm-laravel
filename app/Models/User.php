@@ -39,6 +39,8 @@ class User extends Authenticatable implements FilamentUser
         'password',
         'social_media_provider',
         'social_media_id',
+        'address',
+        'link_gmaps'
     ];
 
     /**
