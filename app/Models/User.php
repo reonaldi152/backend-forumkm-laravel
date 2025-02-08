@@ -100,4 +100,9 @@ class User extends Authenticatable implements FilamentUser
 
         return asset('storage/' . $this->photo);
     }
+
+    public function addresses()
+    {
+        return $this->hasMany(\App\Models\Address\Address::class);
+    }
 }

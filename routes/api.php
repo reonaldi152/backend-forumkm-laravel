@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\API\AuthSellerController;
 use App\Http\Controllers\AuthenticationController;
@@ -49,6 +50,11 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('profile', [ProfileController::class, 'getProfile']);
     Route::patch('profile', [ProfileController::class, 'updateProfile']);
     
+    Route::apiResource('address', AddressController::class);
+    Route::post('address/{uuid}/set-default', [AddressController::class, 'setDefault']);
+
+    Route::get('province', [AddressController::class, 'getProvince']);
+    Route::get('city', [AddressController::class, 'getCity']);
 });
 
 // group route for seller
