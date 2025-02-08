@@ -77,7 +77,7 @@ class User extends Authenticatable implements FilamentUser
             'gender' => $this->gender,
             'birth_date' => $this->birth_date,
             'address' => $this->address,
-            'link_gmaps' => $this->link_gamps
+            'link_gmaps' => $this->link_gmaps
         ];
     }
 
