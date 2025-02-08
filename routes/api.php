@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\API\AuthSellerController;
 use App\Http\Controllers\AuthenticationController;
@@ -33,6 +34,9 @@ Route::post('/verify-register', [AuthenticationController::class, 'verifyRegiste
 Route::post('/resend-otp', [AuthenticationController::class, 'resendOtp']);
 
 Route::post('/login', [AuthenticationController::class, 'login']);
+
+Route::get('/slider', [HomeController::class, 'getSlider']);
+Route::get('/category', [HomeController::class, 'getCategory']);
 
 Route::prefix('forgot-password')->group(function(){
     Route::post('/request', [ForgotPasswordController::class, 'request']);
