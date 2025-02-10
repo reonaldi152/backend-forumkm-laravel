@@ -3,12 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Filament\Panel;
+use App\Models\Review;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
-use Filament\Panel;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -78,6 +79,21 @@ class User extends Authenticatable implements FilamentUser
             'birth_date' => $this->birth_date,
             'address' => $this->address,
             'link_gmaps' => $this->link_gmaps
+        ];
+    }
+
+    public function getApiResponseAsSellerAttribute()
+    {
+        $productIds = $this->products()->pluck('id');
+
+        return [
+            'username' => $this->username,
+            'store_name' => $this->store_name,
+            'photo_url' => $this->photo_url,
+            'product_count' => $this->products()->count(),
+            'rating_count' => Review::whereIn('product_id', $productIds)->count(),
+            'join_date' => $this->created_at->diffForHumans(),
+            'send_form' => optional($this->address()->where('is_default', true)->first())->getApiResponseAttribute()
         ];
     }
 
