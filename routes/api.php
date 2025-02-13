@@ -49,13 +49,18 @@ Route::prefix('forgot-password')->group(function(){
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('profile', [ProfileController::class, 'getProfile']);
     Route::patch('profile', [ProfileController::class, 'updateProfile']);
-    
+
     Route::apiResource('address', AddressController::class);
     Route::post('address/{uuid}/set-default', [AddressController::class, 'setDefault']);
 
     Route::get('province', [AddressController::class, 'getProvince']);
     Route::get('city', [AddressController::class, 'getCity']);
 });
+
+Route::get('product', [HomeController::class, 'getProduct']);
+Route::get('product/{slug}', [HomeController::class, 'getProductDetail']);
+Route::get('product/{slug}/review', [HomeController::class, 'getProductReview']);
+Route::get('seller/{username}', [HomeController::class, 'getSellerDetail']);
 
 // group route for seller
 Route::group(['prefix' => 'seller'], function () {
