@@ -16,11 +16,11 @@ class ProductSeeder extends Seeder
     {
         DB::transaction(function(){
 
-            for ($productCount = 1; $productCount <= 100; $productCount++) {
+            for ($productCount = 1; $productCount <= 10; $productCount++) {
 
                 $payload = [
                     'name' => 'Produk ' . $productCount,
-                    'slug' => 'Produk ' . $productCount,
+                    'slug' => 'produk-' . $productCount,
                     'seller_id' => \App\Models\User::inRandomOrder()->first()->id,
                     'category_id' => \App\Models\Category::whereNotNull('parent_id')->inRandomOrder()->first()->id,
                     'description' => 'Deskripsi Produk ' . $productCount . '. Lorem Ipsum bla bla bla ',
@@ -50,7 +50,7 @@ class ProductSeeder extends Seeder
                     'reviews' => [
                         [
                             'user_id' => \App\Models\User::inRandomOrder()->first()->id,
-                            'star_sellers' => rand(1, 5),
+                            'star_seller' => rand(1, 5),
                             'star_courier' => rand(1, 5),
                             'variations' => 'Warna: Hijau, Ukuran: XL',
                             'description' => 'Produk Bagus!',
@@ -64,7 +64,7 @@ class ProductSeeder extends Seeder
                         ],
                         [
                             'user_id' => \App\Models\User::inRandomOrder()->first()->id,
-                            'star_sellers' => rand(1, 5),
+                            'star_seller' => rand(1, 5),
                             'star_courier' => rand(1, 5),
                             'variations' => 'Warna: Hijau, Ukuran: XL',
                             'description' => 'Produk Bagus!',

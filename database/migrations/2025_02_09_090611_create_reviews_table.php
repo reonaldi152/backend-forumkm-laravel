@@ -16,7 +16,7 @@ return new class extends Migration
             // $table->unsignedBigInteger('order_item_id')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
-            $table->integer('star_sellers');
+            $table->integer('star_seller');
             $table->integer('star_courier');
             $table->string('variations');
             $table->text('description');
