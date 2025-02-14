@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Panel;
 use App\Models\Review;
+use App\Models\Product;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
@@ -93,7 +94,7 @@ class User extends Authenticatable implements FilamentUser
             'product_count' => $this->products()->count(),
             'rating_count' => Review::whereIn('product_id', $productIds)->count(),
             'join_date' => $this->created_at->diffForHumans(),
-            'send_form' => optional($this->address()->where('is_default', true)->first())->getApiResponseAttribute()
+            'send_form' => optional($this->addresses()->where('is_default', true)->first())->getApiResponseAttribute()
         ];
     }
 
@@ -120,5 +121,10 @@ class User extends Authenticatable implements FilamentUser
     public function addresses()
     {
         return $this->hasMany(\App\Models\Address\Address::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'seller_id');
     }
 }
