@@ -86,7 +86,7 @@ class ProductSeeder extends Seeder
                     'category_id' => $payload['category_id'],
                     'description' => $payload['description'],
                     'stock' => $payload['stock'],
-                    'weight' => $payload['name'],
+                    'weight' => $payload['weight'],
                     'length' => $payload['length'],
                     'width' => $payload['width'],
                     'height' => $payload['height'],
