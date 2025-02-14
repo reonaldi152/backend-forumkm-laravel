@@ -70,11 +70,11 @@ class HomeController extends Controller
         }));
     }
 
-    public function getSellerDetail(string $username)
+    public function getSellerDetail(string $email)
     {
-        $seller = \App\Models\User::where('username', $username)->firstOrFail();
+        $seller = \App\Models\Seller::where('email', $email)->firstOrFail();
 
-        return ResponseFormatter::success($seller->api_response_as_seller);
+        return ResponseFormatter::success($seller);
     }
 
 
