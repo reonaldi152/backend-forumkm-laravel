@@ -69,7 +69,7 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::get('product', [HomeController::class, 'getProduct']);
 Route::get('product/{slug}', [HomeController::class, 'getProductDetail']);
 Route::get('product/{slug}/review', [HomeController::class, 'getProductReview']);
-Route::get('seller/{username}', [HomeController::class, 'getSellerDetail']);
+Route::get('seller/{email}', [HomeController::class, 'getSellerDetail']);
 
 // group route for seller
 Route::group(['prefix' => 'seller'], function () {
