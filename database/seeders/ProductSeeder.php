@@ -50,7 +50,7 @@ class ProductSeeder extends Seeder
                     'reviews' => [
                         [
                             'user_id' => \App\Models\User::inRandomOrder()->first()->id,
-                            'star_seller' => rand(1, 5),
+                            'star_sellers' => rand(1, 5),
                             'star_courier' => rand(1, 5),
                             'variations' => 'Warna: Hijau, Ukuran: XL',
                             'description' => 'Produk Bagus!',
