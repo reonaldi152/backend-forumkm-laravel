@@ -144,9 +144,21 @@ class Product extends Model
                 'with_attachment' => $this->reviews()->whereNotNull('attachments')->count(),
                 'with_description' => $this->reviews()->whereNotNull('description')->count(),
             ],
-            'other_product' => $this->seller->products->where('id', '!=', $this->id)->random(6)->map(function ($product) {
-                return $product->getApiResponseExcerptAttribute();
-            }),
+            // 'other_product' => $this->seller->products->where('id', '!=', $this->id)->random(6)->map(function ($product) {
+            //     return $product->getApiResponseExcerptAttribute();
+            // }),
+            'other_product' => $this->seller->products
+                ->where('id', '!=', $this->id)
+                ->values() // Reset index array agar Collection tidak bermasalah
+                ->when($this->seller->products->count() > 6, function ($collection) {
+                    return $collection->random(6);
+                }, function ($collection) {
+                    return $collection; // Jika produk kurang dari 6, ambil semua yang tersedia
+                })
+                ->map(function ($product) {
+                    return $product->getApiResponseExcerptAttribute();
+                }),
+
         ];
     }
 

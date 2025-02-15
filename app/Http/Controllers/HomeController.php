@@ -74,7 +74,7 @@ class HomeController extends Controller
     {
         $seller = \App\Models\Seller::where('email', $email)->firstOrFail();
 
-        return ResponseFormatter::success($seller);
+        return ResponseFormatter::success($seller->api_response);
     }
 
 

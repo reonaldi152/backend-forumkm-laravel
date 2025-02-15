@@ -25,4 +25,17 @@ class Seller extends Model
         'status',
         'password',
     ];
+
+    public function getApiResponseAttribute(){
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'store_name' => $this->store_name,
+            'phone' => $this->phone,
+            'gender' => $this->gender,
+            'birth_date' => $this->birth_date,
+            'photo' => $this->photo,
+            'status' => $this->status,
+        ];
+    }
 }
