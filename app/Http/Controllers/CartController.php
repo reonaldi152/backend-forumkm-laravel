@@ -109,4 +109,46 @@ class CartController extends Controller
 
         return $this->getCart();
     }
+
+    public function removeItemFromCart(string $uuid)
+    {
+        $cart = $this->getOrCreateCart();
+        $item = $cart->items()->where('uuid', $uuid)->firstOrFail();
+        $item->delete();
+
+        return $this->getCart();
+    }
+
+    public function updateItemFromCart(string $uuid)
+    {
+        $validator = Validator::make(request()->all(), [
+            'qty' => 'required|numeric|min:1',
+            'note' => 'nullable|string',
+            'vartiations' => 'nullable|array',
+            'variations.*.label' => 'required|exists:variations,name',
+            'variations.*.value' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return ResponseFormatter::error(400, $validator->errors());
+        }
+
+        $cart = $this->getOrCreateCart();
+        $cartItem = $cart->items()->where('uuid', $uuid)->firstOrFail();
+        $product = $cartItem->product();
+        if ($product->stock < request()->qty) {
+            return ResponseFormatter::error(400, null, [
+                'Stock tidak cukup!'
+            ]);
+        }
+
+        $cartItem->update([
+            'variations' => request()->variations,
+            'qty' => request()->qty,
+            'note' => request()->note,
+        ]);
+
+        return $this->getCart();
+    }
+
 }
