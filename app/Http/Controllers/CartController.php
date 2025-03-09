@@ -135,7 +135,7 @@ class CartController extends Controller
 
         $cart = $this->getOrCreateCart();
         $cartItem = $cart->items()->where('uuid', $uuid)->firstOrFail();
-        $product = $cartItem->product();
+        $product = $cartItem->product;
         if ($product->stock < request()->qty) {
             return ResponseFormatter::error(400, null, [
                 'Stock tidak cukup!'
