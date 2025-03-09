@@ -28,6 +28,11 @@ return [
         'key' => env('RESEND_KEY'),
     ],
 
+    'rajaongkir' => [
+        'base_url' => 'https://api.rajaongkir.com/starter',
+        'key' => env('RAJAONGKIR_KEY'),
+    ],
+
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),

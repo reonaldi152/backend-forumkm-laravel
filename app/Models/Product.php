@@ -54,7 +54,7 @@ class Product extends Model
 
     public function seller()
     {
-        return $this->belongsTo(\App\Models\User::class, 'seller_id', 'id');
+        return $this->belongsTo(\App\Models\Seller::class, 'seller_id', 'id');
     }
 
     public function reviews()

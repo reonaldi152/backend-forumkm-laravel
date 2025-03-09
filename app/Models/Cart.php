@@ -51,6 +51,11 @@ class Cart extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function voucher()
+    {
+        return $this->hasOne(Voucher::class, 'id', 'voucher_id');
+    }
+
     public function getApiResponseAttribute()
     {
         $subTotal = $this->items->sum('total');

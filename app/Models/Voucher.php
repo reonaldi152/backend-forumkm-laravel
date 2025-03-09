@@ -22,6 +22,7 @@ class Voucher extends Model
     ];
 
     protected $casts = [
+        'is_public' => 'boolean',
         'discount_cashback_value' => 'float',
         'discount_cashback_max' => 'float',
         'start_date' => 'datetime',
@@ -30,7 +31,7 @@ class Voucher extends Model
 
     public function seller()
     {
-        return $this->belongsTo(User::class, 'seller_id');
+        return $this->belongsTo(Seller::class, 'seller_id');
     }
 
     // public function orders()
